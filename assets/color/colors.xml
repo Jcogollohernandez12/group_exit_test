@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Grupo Éxito Corporate Colors -->
+    <color name="exito_yellow">#FFDD00</color>
+    <color name="exito_black">#000000</color>
+    <color name="exito_white">#FFFFFF</color>
+    <color name="exito_red">#E30613</color>
+
+    <!--  Spectrum -->
+    <color name="spectrum950">#2C0F46</color>
+    <color name="spectrum900">#450D78</color>
+    <color name="spectrum800">#6012A6</color>
+    <color name="spectrum700">#7A17D4</color>
+    <color name="spectrum600">#9233E9</color>
+    <color name="spectrum500">#C28BF2</color>
+    <color name="spectrum400">#D3ABF6</color>
+    <color name="spectrum300">#E1C7F9</color>
+    <color name="spectrum200">#ECDBFB</color>
+    <color name="spectrum100">#F0E3FC</color>
+    <color name="spectrum50">#F7F1FE</color>
+
+     <!--  Dark-Surface -->
+    <color name="darkSurface950">#0D0F14</color>
+    <color name="darkSurface900">#14171F</color>
+    <color name="darkSurface800">#1A1E28</color>
+    <color name="darkSurface700">#202531</color>
+    <color name="darkSurface600">#2A3141</color>
+    <color name="darkSurface500">#323A4B</color>
+    <color name="darkSurface400">#4E5A79</color>
+    <color name="darkSurface300">#606F94</color>
+    <color name="darkSurface200">#7D8AAB</color>
+    <color name="darkSurface100">#A2ACC3</color>
+    <color name="darkSurface50">#C1C7D7</color>
+
+     <!--  moon -->
+    <color name="moon950">#0D1421</color>
+    <color name="moon900">#101827</color>
+    <color name="moon800">#141E30</color>
+    <color name="moon700">#18243A</color>
+    <color name="moon600">#26374C</color>
+    <color name="moon500">#2F394D</color>
+    <color name="moon400">#454F61</color>
+    <color name="moon300">#5B6880</color>
+    <color name="moon200">#73819B</color>
+    <color name="moon100">#919CB1</color>
+    <color name="moon50">#C3CAD5</color>
+
+     <!--  neutral -->
+    <color name="neutral950">#111113</color>
+    <color name="neutral900">#18181B</color>
+    <color name="neutral800">#27272A</color>
+    <color name="neutral700">#3F3F46</color>
+    <color name="neutral600">#52525B</color>
+    <color name="neutral500">#71717A</color>
+    <color name="neutral400">#A1A1AA</color>
+    <color name="neutral300">#D4D4D8</color>
+    <color name="neutral200">#E4E4E7</color>
+    <color name="neutral100">#F4F4F5</color>
+    <color name="neutral50">#FAFAFA</color>
+
+    <!--  Alert -->
+    <color name="error600">#DC2626</color>
+    <color name="error500">#EF4444</color>
+    <color name="success400">#A3E635</color>
+    <color name="alert400">#FBBF24</color>
+    <color name="turquoise400">#4DD5CA</color>
+
+</resources>
