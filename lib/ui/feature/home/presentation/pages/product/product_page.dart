@@ -8,6 +8,7 @@ import 'package:group_exito/ui/feature/home/presentation/pages/product/bloc/prod
 import 'package:group_exito/ui/feature/home/presentation/pages/product/bloc/product_state.dart';
 import 'package:group_exito/ui/feature/home/presentation/widgets/card_product.dart';
 import 'package:group_exito/ui/shared/loading_mask.dart';
+import 'package:group_exito/ui/shared/appbar_with_cart.dart';
 
 class ProductPage extends StatelessWidget {
   static const String routeName = '/product';
@@ -33,7 +34,7 @@ class ProductPage extends StatelessWidget {
           } else if (state is ProductLoaded) {
             final List<ProductResponse> products = state.products;
             return Scaffold(
-              appBar: AppBar(title: Text(products.isNotEmpty ? products.first.category.name : '')),
+              appBar: AppBarWithCart(title: products.isNotEmpty ? products.first.category.name : 'Productos'),
               body: ListView.builder(
                 padding: const EdgeInsets.all(16),
                 itemCount: products.length,
