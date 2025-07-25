@@ -8,8 +8,9 @@ import 'package:group_exito/core/config/envs/environments.dart';
 import 'package:group_exito/core/config/flavors/flavors.dart';
 import 'package:group_exito/core/errors/error_handler.dart';
 import 'package:group_exito/ui/app/app.dart';
-import 'package:group_exito/ui/app/cubit/app_cubit.dart';
-import 'package:group_exito/ui/app/cubit/theme_cubit.dart';
+import 'package:group_exito/ui/shared/cubit/appbar_with_card_cubit.dart';
+import 'package:group_exito/ui/shared/cubit/express_cubit.dart';
+import 'package:group_exito/ui/shared/cubit/theme_cubit.dart';
 
 Future<void> initializeFlutterApp() async {
   await runZonedGuarded(
@@ -35,6 +36,7 @@ Future<void> initializeFlutterApp() async {
           providers: <BlocProvider<dynamic>>[
             BlocProvider<ThemeCubit>(create: (BuildContext context) => ThemeCubit()),
             BlocProvider<CartCubit>(create: (BuildContext context) => CartCubit()),
+            BlocProvider<ExpressCubit>(create: (BuildContext context) => ExpressCubit()),
           ],
           child: const App(),
         ),

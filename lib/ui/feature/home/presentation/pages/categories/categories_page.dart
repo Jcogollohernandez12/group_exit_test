@@ -4,13 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:group_exito/core/config/di/di_manager.dart';
 import 'package:group_exito/core/errors/error_handler.dart';
 import 'package:group_exito/ui/feature/home/data/models/category_response.dart';
-import 'package:group_exito/ui/feature/home/presentation/pages/product/product_page.dart';
-import 'package:group_exito/ui/feature/home/presentation/widgets/category_card.dart';
 import 'package:group_exito/ui/feature/home/domain/usecase/category/get_all_categories_use_case.dart';
 import 'package:group_exito/ui/feature/home/presentation/pages/categories/bloc/categories_bloc.dart';
 import 'package:group_exito/ui/feature/home/presentation/pages/categories/bloc/categories_event.dart';
 import 'package:group_exito/ui/feature/home/presentation/pages/categories/bloc/categories_state.dart';
+import 'package:group_exito/ui/feature/home/presentation/pages/product/product_page.dart';
+import 'package:group_exito/ui/feature/home/presentation/widgets/category_card.dart';
 import 'package:group_exito/ui/shared/appbar_with_cart.dart';
+import 'package:group_exito/ui/shared/express_switcher.dart';
 import 'package:group_exito/ui/shared/loading_mask.dart';
 
 class CategoriesPage extends StatelessWidget {
@@ -55,6 +56,8 @@ class _CategoriesView extends StatelessWidget {
   final List<CategoryResponse> categories;
   @override
   Widget build(BuildContext context) {
+    final TimeOfDay now = TimeOfDay.fromDateTime(DateTime.now());
+    final bool showExpress = now.hour >= 10 && (now.hour < 24 || (now.hour == 24 && now.minute == 0));
     return Scaffold(
       appBar: const AppBarWithCart(title: 'Categorías'),
       body: Padding(
@@ -76,6 +79,7 @@ class _CategoriesView extends StatelessWidget {
           },
         ),
       ),
+      floatingActionButton: showExpress ? const ExpressSwitcher() : null,
     );
   }
 }
