@@ -57,7 +57,7 @@ class _CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TimeOfDay now = TimeOfDay.fromDateTime(DateTime.now());
-    final bool showExpress = now.hour >= 10 && (now.hour < 24 || (now.hour == 24 && now.minute == 0));
+    final bool showExpress = now.hour >= 10 && (now.hour < 16 || (now.hour == 16 && now.minute == 0));
     return Scaffold(
       appBar: const AppBarWithCart(title: 'Categorías'),
       body: Padding(
