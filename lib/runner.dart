@@ -8,6 +8,7 @@ import 'package:group_exito/core/config/envs/environments.dart';
 import 'package:group_exito/core/config/flavors/flavors.dart';
 import 'package:group_exito/core/errors/error_handler.dart';
 import 'package:group_exito/ui/app/app.dart';
+import 'package:group_exito/ui/app/cubit/app_cubit.dart';
 import 'package:group_exito/ui/app/cubit/theme_cubit.dart';
 
 Future<void> initializeFlutterApp() async {
@@ -29,7 +30,15 @@ Future<void> initializeFlutterApp() async {
 
       // await _initializeFirebaseApp(FlavorConfig.firebaseAppName, options);
 
-      runApp(BlocProvider<ThemeCubit>(create: (BuildContext context) => ThemeCubit(), child: const App()));
+      runApp(
+        MultiBlocProvider(
+          providers: <BlocProvider<dynamic>>[
+            BlocProvider<ThemeCubit>(create: (BuildContext context) => ThemeCubit()),
+            BlocProvider<CartCubit>(create: (BuildContext context) => CartCubit()),
+          ],
+          child: const App(),
+        ),
+      );
     },
     (Object err, StackTrace stack) {
       ErrorHandler.handleException(err, stackTrace: stack, showAlertOnError: true);

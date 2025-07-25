@@ -10,6 +10,7 @@ import 'package:group_exito/ui/feature/home/domain/usecase/category/get_all_cate
 import 'package:group_exito/ui/feature/home/presentation/pages/categories/bloc/categories_bloc.dart';
 import 'package:group_exito/ui/feature/home/presentation/pages/categories/bloc/categories_event.dart';
 import 'package:group_exito/ui/feature/home/presentation/pages/categories/bloc/categories_state.dart';
+import 'package:group_exito/ui/shared/appbar_with_cart.dart';
 import 'package:group_exito/ui/shared/loading_mask.dart';
 
 class CategoriesPage extends StatelessWidget {
@@ -55,7 +56,7 @@ class _CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Categorías')),
+      appBar: const AppBarWithCart(title: 'Categorías'),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: GridView.builder(
