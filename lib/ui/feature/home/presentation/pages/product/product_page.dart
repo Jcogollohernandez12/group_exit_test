@@ -7,6 +7,7 @@ import 'package:group_exito/ui/feature/home/presentation/pages/product/bloc/prod
 import 'package:group_exito/ui/feature/home/presentation/pages/product/bloc/product_event.dart';
 import 'package:group_exito/ui/feature/home/presentation/pages/product/bloc/product_state.dart';
 import 'package:group_exito/ui/feature/home/presentation/widgets/card_product.dart';
+import 'package:group_exito/ui/shared/loading_mask.dart';
 
 class ProductPage extends StatelessWidget {
   static const String routeName = '/product';
@@ -26,7 +27,9 @@ class ProductPage extends StatelessWidget {
       child: BlocBuilder<ProductBloc, ProductState>(
         builder: (BuildContext context, ProductState state) {
           if (state is ProductLoading) {
-            return const Scaffold(body: Center(child: CircularProgressIndicator()));
+            return Scaffold(
+              body: Center(child: LoadingMask(loading: true, child: Container())),
+            );
           } else if (state is ProductLoaded) {
             final List<ProductResponse> products = state.products;
             return Scaffold(
