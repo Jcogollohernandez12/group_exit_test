@@ -15,7 +15,7 @@ class ProductDataSourceImpl implements ProductDataSource {
   @override
   Future<List<ProductResponse>> getProductsByCategory(int categoryId) async {
     try {
-      final Response<List<dynamic>> response = await _apiClient.get('/products', queryParameters: <String, dynamic>{'category': categoryId});
+      final Response<List<dynamic>> response = await _apiClient.get('/products', queryParameters: <String, dynamic>{'categoryId': categoryId});
       if (response.statusCode == 200) {
         if (response.data == null) {
           return <ProductResponse>[];

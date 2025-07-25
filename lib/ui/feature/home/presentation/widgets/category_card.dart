@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:group_exito/core/resources/foundations/font_foundation.dart';
 
-class CategoriaCard extends StatelessWidget {
+class CategoryCard extends StatelessWidget {
   final String id;
   final String name;
   final String imageUrl;
   final String url;
   final void Function()? onTap;
 
-  const CategoriaCard({super.key, required this.id, required this.name, required this.imageUrl, required this.url, this.onTap});
+  const CategoryCard({super.key, required this.id, required this.name, required this.imageUrl, required this.url, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +26,12 @@ class CategoriaCard extends StatelessWidget {
               child: Image.network(
                 imageUrl,
                 fit: BoxFit.cover,
+                loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+                  return const Center(child: CircularProgressIndicator());
+                },
                 errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => const Center(child: Icon(Icons.broken_image, size: 60, color: Colors.grey)),
               ),
             ),

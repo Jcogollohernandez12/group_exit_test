@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:group_exito/core/config/di/di_manager.dart';
 import 'package:group_exito/core/errors/error_handler.dart';
 import 'package:group_exito/ui/feature/home/data/models/category_response.dart';
+import 'package:group_exito/ui/feature/home/presentation/pages/product/product_page.dart';
 import 'package:group_exito/ui/feature/home/presentation/widgets/category_card.dart';
 import 'package:group_exito/ui/feature/home/domain/usecase/category/get_all_categories_use_case.dart';
 import 'package:group_exito/ui/feature/home/presentation/pages/categories/bloc/categories_bloc.dart';
 import 'package:group_exito/ui/feature/home/presentation/pages/categories/bloc/categories_event.dart';
 import 'package:group_exito/ui/feature/home/presentation/pages/categories/bloc/categories_state.dart';
+import 'package:group_exito/ui/shared/appbar_with_cart.dart';
+import 'package:group_exito/ui/shared/loading_mask.dart';
 
 class CategoriesPage extends StatelessWidget {
   static const String routeName = '/categories';
@@ -30,7 +34,7 @@ class CategoriesPage extends StatelessWidget {
         child: BlocBuilder<CategoriesBloc, CategoriesState>(
           builder: (BuildContext context, CategoriesState state) {
             if (state is HomeLoading) {
-              return const Center(child: CircularProgressIndicator());
+              return Scaffold(body: LoadingMask(loading: true, child: Container()));
             } else if (state is CategoriesLoaded) {
               final List<CategoryResponse> categories = state.categories;
               return _CategoriesView(categories: categories);
@@ -52,7 +56,7 @@ class _CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Categorías')),
+      appBar: const AppBarWithCart(title: 'Categorías'),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: GridView.builder(
@@ -60,7 +64,15 @@ class _CategoriesView extends StatelessWidget {
           itemCount: categories.length,
           itemBuilder: (BuildContext context, int index) {
             final CategoryResponse category = categories[index];
-            return CategoriaCard(id: category.id.toString(), name: category.name, imageUrl: category.image, url: category.slug, onTap: () {});
+            return CategoryCard(
+              id: category.id.toString(),
+              name: category.name,
+              imageUrl: category.image,
+              url: category.slug,
+              onTap: () {
+                context.pushNamed(ProductPage.routeName, pathParameters: <String, String>{'id': category.id.toString()});
+              },
+            );
           },
         ),
       ),

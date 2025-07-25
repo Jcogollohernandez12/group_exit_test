@@ -71,15 +71,14 @@ class LoadingMaskState extends State<LoadingMask> {
             child: Container(color: Colors.black.withOpacity(0.16)),
           ),
         ),
-        Positioned(
-          right: 0,
-          top: MediaQuery.of(context).size.height / 2,
-          child: Transform.rotate(origin: const Offset(128, 67), angle: angle, child: Assets.svgs.iconExito.svg()),
-        ),
-        Positioned(
-          top: MediaQuery.of(context).size.height / 2,
-          child: Center(
-            child: Text('Cargando...', style: FontFoundation.title.bold20Lato.copyWith(color: ColorToken.exitoBlack)),
+        Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Transform.rotate(angle: angle, child: Assets.svgs.iconExito.svg(height: 64, width: 64)),
+              const SizedBox(height: 16),
+              Text('Cargando...', style: FontFoundation.title.bold20Lato.copyWith(color: ColorToken.exitoBlack)),
+            ],
           ),
         ),
       ],

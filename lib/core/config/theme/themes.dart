@@ -7,7 +7,7 @@ class Themes {
     brightness: Brightness.light,
     useMaterial3: true,
     scaffoldBackgroundColor: ColorToken.exitoWhite,
-    appBarTheme: const AppBarTheme(backgroundColor: ColorToken.darkSurface900),
+    appBarTheme: const AppBarTheme(backgroundColor: ColorToken.exitoYellow),
     textSelectionTheme: TextSelectionThemeData(cursorColor: ColorToken.spectrum600, selectionColor: ColorToken.spectrum600.withOpacity(0.4), selectionHandleColor: ColorToken.spectrum600),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
