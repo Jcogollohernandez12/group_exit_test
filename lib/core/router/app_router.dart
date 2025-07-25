@@ -12,8 +12,15 @@ class AppRouter {
     initialLocation: SplashPage.routeName,
     routes: <RouteBase>[
       GoRoute(path: SplashPage.routeName, builder: (BuildContext context, GoRouterState state) => const SplashPage()),
-      GoRoute(path: ProductPage.routeName, builder: (BuildContext context, GoRouterState state) => const ProductPage()),
       GoRoute(path: CategoriesPage.routeName, builder: (BuildContext context, GoRouterState state) => const CategoriesPage()),
+      GoRoute(
+        path: '/product/:id',
+        name: ProductPage.routeName,
+        builder: (BuildContext context, GoRouterState state) {
+          final int categoryId = int.tryParse(state.pathParameters['id'] ?? '') ?? 0;
+          return ProductPage(categoryId: categoryId);
+        },
+      ),
     ],
     errorBuilder: (BuildContext context, GoRouterState state) => const NotFoundPage(),
   );
