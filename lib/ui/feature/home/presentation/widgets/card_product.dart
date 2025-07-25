@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_exito/core/resources/foundations/font_foundation.dart';
 import 'package:group_exito/core/resources/gen/colors.gen.dart';
-import 'package:group_exito/ui/shared/cubit/appbar_with_card_cubit.dart';
 import 'package:group_exito/ui/feature/home/data/models/category_response.dart';
 import 'package:group_exito/ui/feature/home/data/models/product_response.dart';
+import 'package:group_exito/ui/shared/cubit/appbar_with_card_cubit.dart';
+import 'package:group_exito/ui/shared/cubit/express_cubit.dart';
 
 class ProductCard extends StatefulWidget {
   final int id;
@@ -33,15 +34,19 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
-  int get cartQuantity => context.read<CartCubit>().getProductCount(widget.id);
+  CartCubit _getActiveCart(BuildContext context) {
+    return context.read<CartCubit>();
+  }
+
+  int get cartQuantity => _getActiveCart(context).getProductCount(widget.id);
 
   void _increment() {
-    context.read<CartCubit>().addProduct(_toProductResponse());
+    _getActiveCart(context).addProduct(_toProductResponse());
   }
 
   void _decrement() {
     if (cartQuantity > 0) {
-      context.read<CartCubit>().removeProduct(_toProductResponse());
+      _getActiveCart(context).removeProduct(_toProductResponse());
     }
   }
 
@@ -113,26 +118,57 @@ class _ProductCardState extends State<ProductCard> {
   }
 
   Widget _buildCounter() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.orange),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.remove_circle_outline, color: Colors.orange),
-            onPressed: _decrement,
+    final bool express = context.read<ExpressCubit>().state;
+    final Color counterColor = express ? Colors.blueAccent : Colors.orange;
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          decoration: BoxDecoration(
+            border: Border.all(color: counterColor),
+            borderRadius: BorderRadius.circular(20),
           ),
-          Text('$cartQuantity und', style: FontFoundation.label.medium14Lato.copyWith(color: Colors.orange[800])),
-          IconButton(
-            icon: const Icon(Icons.add_circle_outline, color: Colors.orange),
-            onPressed: _increment,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              express
+                  ? IconButton(
+                      icon: Icon(Icons.delete_forever_outlined, color: Colors.blueGrey),
+                      onPressed: () {
+                        while (cartQuantity > 0) {
+                          _decrement();
+                        }
+                      },
+                    )
+                  : IconButton(
+                      icon: Icon(Icons.remove_circle_outline, color: counterColor),
+                      onPressed: _decrement,
+                    ),
+              Text('$cartQuantity und', style: FontFoundation.label.medium14Lato.copyWith(color: counterColor)),
+              IconButton(
+                icon: Icon(Icons.add_circle_outline, color: counterColor),
+                onPressed: _increment,
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+        if (express)
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: ElevatedButton(
+              onPressed: () {
+                // TODO: Implementar lógica de compra express
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              ),
+              child: const Text('Comprar'),
+            ),
+          ),
+      ],
     );
   }
 
