@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_exito/ui/feature/home/data/models/product_response.dart';
 
 class CartCubit extends Cubit<List<ProductResponse>> {
-  /// Devuelve un Map con el producto único y la cantidad agregada
   Map<ProductResponse, int> getGroupedProducts() {
     final Map<int, ProductResponse> uniqueProducts = <int, ProductResponse>{};
     final Map<int, int> productCounts = <int, int>{};

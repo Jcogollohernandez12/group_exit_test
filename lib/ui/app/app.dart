@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_exito/core/config/flavors/flavors.dart';
 import 'package:group_exito/core/resources/accessibility/accessibility.dart';
 import 'package:group_exito/core/router/app_router.dart';
-import 'package:group_exito/ui/app/cubit/theme_cubit.dart';
+import 'package:group_exito/ui/shared/cubit/theme_cubit.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

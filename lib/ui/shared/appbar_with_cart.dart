@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:group_exito/core/resources/foundations/font_foundation.dart';
 import 'package:group_exito/core/resources/gen/colors.gen.dart';
-import 'package:group_exito/ui/app/cubit/app_cubit.dart';
+import 'package:group_exito/ui/shared/cubit/appbar_with_card_cubit.dart';
 import 'package:group_exito/ui/feature/home/data/models/product_response.dart';
 
 class AppBarWithCart extends StatelessWidget implements PreferredSizeWidget {
@@ -24,12 +24,12 @@ class AppBarWithCart extends StatelessWidget implements PreferredSizeWidget {
                         shrinkWrap: true,
                         itemCount: grouped.length,
                         itemBuilder: (BuildContext context, int index) {
-                          final productEntry = grouped.entries.elementAt(index);
+                          final MapEntry<ProductResponse, int> productEntry = grouped.entries.elementAt(index);
                           final ProductResponse product = productEntry.key;
-                          final int cantidad = productEntry.value;
+                          final int productQuantity = productEntry.value;
                           return ListTile(
                             title: Text(product.title),
-                            subtitle: Text('Cantidad: $cantidad'),
+                            subtitle: Text('Cantidad: $productQuantity'),
                             trailing: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
